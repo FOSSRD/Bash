@@ -1,38 +1,31 @@
 #!/bin/bash
-# enable color support of ls and also add handy aliases
+# colores para LS y grep (no es necesario en todos los sistemas pero es
+# mejor prevenir que lamentar)
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls -hN --color=auto --group-directories-first'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+# Este truco lo llamamos "los ls de ubuntu"
+alias ll='ls -alF';
+alias la='ls -A';
+alias l='ls -CF';
 
 
-
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+# Si NO USAS GNOME:
+#  Necesitas cambiasr las palabras terminal y error por rutas a iconos svg o
+# png que quieras usar para las notificaciones del alias alert!
+# para usar este alias solo debes hacer [comando lento];alert y ya cuando el
+# comando se ejecute recibiras una notificacion que te indicara si el comando
+# se ha ejecutado exitosamente al final de la ejecucion
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e 's/alert$//')"';
 
 
 #byebye for shutdown
-alias byebye='shutdown now'
-
-
-
-
-# wifi available
-alias wifi='nmcli d wifi';
-
-#exporting all of the necesary paths to code with esp32
-alias get_esp='. $HOME/esp/esp-idf/export.sh'
-
-alias autowal='wal --iterative -i /usr/share/backgrounds/ > /dev/null'
+alias byebye='shutdown now';
 
 alias ip='ip -color';

@@ -1,12 +1,14 @@
 #!/bin/bash
 
-# transform md anotations into PDF
+# transforma un archivo markdown en una presentacion en PDF
 mdpdf () { pandoc "$1".md -t beamer -o "$1".pdf ;}
-# Get all metadata
+# Toda la metadata de un archivo
 metadata () { echo "Salida del comando stat" ; stat "$1" ; echo "Salida del comando ls -lisan" ; ls -lisan "$1" ; echo "salida del comando exiftool" ; exiftool "$1" ;}
-# activates the autocd mode
+# con este podras hacer cd sin escribir cd
+# solo escribe la ruta y presiona enter
 shopt -s autocd
-edit () { du -a -L "$1" | awk '{print $2}' | fzf --multi --preview 'vicat {1}' | xargs -r "$VISUAL" ;}
+# comando para elegir que archivo editar dentro de una carpeta
+edit () { du -d 3 --exclude='./.*' -a -L "$1" | awk '{print $2}' | fzf --multi --preview 'vicat {1}' | xargs -r "$VISUAL"; }
 
 function cdls() {
     DIR="$*";
@@ -24,7 +26,8 @@ function cdls() {
 
 #top10 commands
 top10() { history | awk '{a[$2]++ } END{for(i in a){print a[i] " " i}}' | sort -rn | head; }
-# goes up by the number of directories
+# Va hacia arriba en la estructura de folders tantas veces como indiques
+# como si estuvieces haciendo cd .. multiples veces
 up() {
   local d=""
   limit=$1
@@ -37,7 +40,7 @@ up() {
   fi
   cd $d
 }
-# ARCHIVE EXTRACTOR {{{
+# extraer casi cualquier tipo de archivo comprimido
 extract() {
   clrstart="\033[1;34m"  #color codes
   clrend="\033[0m"
@@ -148,8 +151,3 @@ remindme() {
   }
 
 #}}}
-
-
-
-pacget () { pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S ;}
-pacdel () { pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns ;}

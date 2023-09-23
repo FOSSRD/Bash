@@ -1,31 +1,27 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# If not running interactively, don't do anything
+
+# Estte snippet logra que no importemos el bashrc cuando se arranca una
+#terminal no interactiva
 case $- in
     *i*) ;;
       *) return;;
 esac
-#Import all of the subfiles for .bashrc
-
+#Importamos todos los sub archivos
+#Aliases utiles
 if [ -f ~/.config/bashrc/alias ];
 then
     . ~/.config/bashrc/alias
 fi
-
+#Prompt para que la terminal se vea bien y sea extra util
 if [ -f ~/.config/bashrc/promts ];
 then
     . ~/.config/bashrc/promts
 fi
-
-if [ -f ~/.config/bashrc/titles ];
-then
-    . ~/.config/bashrc/titles
-fi
-
+#Exportar variables necesarias
 if [ -f ~/.config/bashrc/exports ];
 then
     . ~/.config/bashrc/exports
 fi
-
+#Funciones utiles (parecido a los alias)
 if [ -f ~/.config/bashrc/functions ];
 then
     . ~/.config/bashrc/functions
@@ -33,8 +29,8 @@ fi
 
 
 
-#########################################AUTOCOMPLETION#####################
-# sources /etc/bash.bashrc).
+##################################AUTOCOMPLETADO#####################
+# esto es para usar el autocompletado de fzf
 if [ -f /usr/share/fzf/completion.bash ];
 then
 source /usr/share/fzf/completion.bash
@@ -44,7 +40,7 @@ if [ -f /usr/share/fzf/completion.bash ];
 then
 source /usr/share/fzf/key-bindings.bash
 fi
-# autocomplete for sudo man and wich
+# autocompletado para sudo man and wich
 complete -cf sudo man wich;
 #For arch
 if ! shopt -oq posix; then
@@ -58,35 +54,32 @@ fi
 ###########################################################################
 
 ####################################HISTORY MANAGEMENT#####################
-# don't put duplicate lines or lines starting with space in the history.
+# No agregar a el historial los comandos que empiecen con espacio ni los
+# comando que sean duplicados
 HISTCONTROL=ignoreboth
-# append to the history file, don't overwrite it
+# agregar los comandos al historial sin sobreescribirlo
 shopt -s histappend
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+# setea el ttamano de ttu history file:  see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=
 HISTFILESIZE=
+#No agregar al history ninguno de estos comandos:
 export HISTIGNORE='&:ls:ll:la:cd:exit:clear:history'
 ###########################################################################
 
 
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
+# Hacer que la terminal sea mas "responsive"
 shopt -s checkwinsize
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-# vi mode in the shell
+# modo vim en la terminal
+#COMENTA ESTA LINEA SI NO ENTIENDES VIM
 set -o vi
 
-#####adding the agent forwarding stuff
-if [ -z "$SSH_AUTH_SOCK" ] ; then
-    eval `ssh-agent` > /dev/null 2&>1;
-    ssh-add > /dev/null 2&>1;
-
-fi
 
 
-source /usr/share/bash-completion/bash_completion
+# Usar menucomplete al presionar tab para tener mejores resultados
+# de completado
 bind 'set show-all-if-ambiguous on';
 bind 'TAB:menu-complete';
