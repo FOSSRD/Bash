@@ -26,7 +26,7 @@ Dentro del archivo `.bashrc`, encontrarás algunas de estas configuraciones que 
 2. Crea una carpeta llamada "bashrc" en la carpeta "/home/tu-usuario/.config".
 3. Copia los archivos "alias," "export," "function," y "prompts" en la carpeta "bashrc."
 
-### Este archivo de configuracion trae algunas configuraciones Bash, puedes leer los comentarios del archivo de configuración los cuales están en español para mejor entendimiento.
+### Este archivo de configuracion trae algunas configuraciones de Bash, puedes leer los comentarios del archivo de configuración los cuales están en español para mejor entendimiento.
 
 #### Nota: Si quieres proponer algun cambio para el archivo no dudes en hacer un pull request ;)
 
