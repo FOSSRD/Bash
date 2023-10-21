@@ -25,3 +25,9 @@ Dentro del archivo `.bashrc`, encontrarás algunas de estas configuraciones que 
 1. Copia el archivo `.bashrc` a la carpeta "/home/tu-usuario" donde "tu-usuario" debe reemplazarse por el nombre de usuario que hayas creado.
 2. Crea una carpeta llamada "bashrc" en la carpeta "/home/tu-usuario/.config".
 3. Copia los archivos "alias," "export," "function," y "prompts" en la carpeta "bashrc."
+
+### Este archivo de configuracion trae algunas configuraciones Bash, puedes leer los comentarios del archivo de configuración los cuales están en español para mejor entendimiento.
+
+#### Nota: Si quieres proponer algun cambio para el archivo no dudes en hacer un pull request ;)
+
+### Somos FOSS-RD, una comunidad de Profesionales del área de Tecnología de República Dominicana.
