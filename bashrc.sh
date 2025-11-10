@@ -1,7 +1,10 @@
 #!/bin/bash
 
+set -e
+
 # Define Routes
-REPO_PATH="$PWD"
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
+REPO_PATH="$SCRIPT_DIR"
 
 if [ "$EUID" -ne 0 ]; then
   echo "This script need super user privileges"
@@ -15,23 +18,24 @@ if [ -z "$REAL_USER" ]; then
   exit 1
 fi
 HOME_DIR=$(getent passwd "$REAL_USER" | cut -d: -f6)
+CONFIG_DIR="$HOME_DIR/.config/bash"
 
 # Create config directory
-sudo mkdir -p "$HOME_DIR"/.config/bash || echo "failed to create directory"
+install -d -m 755 -o "$REAL_USER" -g "$REAL_USER" "$CONFIG_DIR"
 
-echo "Directory created in $HOME_DIR/.config"
+echo "Directory created in $CONFIG_DIR"
 
 # Copy configs
-sudo cp "$REPO_PATH"/alias "$HOME_DIR"/.config/bash/
+install -m 644 -o "$REAL_USER" -g "$REAL_USER" "$REPO_PATH"/alias "$CONFIG_DIR"/
+install -m 644 -o "$REAL_USER" -g "$REAL_USER" "$REPO_PATH"/exports "$CONFIG_DIR"/
+install -m 644 -o "$REAL_USER" -g "$REAL_USER" "$REPO_PATH"/functions "$CONFIG_DIR"/
+install -m 644 -o "$REAL_USER" -g "$REAL_USER" "$REPO_PATH"/promts "$CONFIG_DIR"/
 
-sudo cp "$REPO_PATH"/exports "$HOME_DIR"/.config/bash/
+if [ -f "$HOME_DIR/.bashrc" ]; then
+    mv "$HOME_DIR/.bashrc" "$HOME_DIR/.bashrc.bak"
+    echo "Backed up existing .bashrc to .bashrc.bak"
+fi
 
-sudo cp "$REPO_PATH"/functions "$HOME_DIR"/.config/bash/
-
-sudo cp "$REPO_PATH"/promts "$HOME_DIR"/.config/bash/
-
-sudo mv "$HOME_DIR"/.bashrc "$HOME_DIR"/.bashrc.bak || echo "failed to backup bashrc"
-
-sudo cp "$REPO_PATH"/bashrc "$HOME_DIR"/.bashrc || "failed to copy bashrc"
+install -m 644 -o "$REAL_USER" -g "$REAL_USER" "$REPO_PATH"/bashrc "$HOME_DIR/.bashrc"
 
 echo "Config complete correct"

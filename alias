@@ -22,10 +22,10 @@ alias l='ls -CF';
 # para usar este alias solo debes hacer [comando lento];alert y ya cuando el
 # comando se ejecute recibiras una notificacion que te indicara si el comando
 # se ha ejecutado exitosamente al final de la ejecucion
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e 's/alert$//')"';
+alias alert='command -v notify-send >/dev/null 2>&1 && notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e 's/alert$//')"';
 
 
 #byebye for shutdown
-alias byebye='shutdown now';
+alias byebye='read -p "Are you sure you want to shut down? (y/n) " -n 1 -r && [[ $REPLY =~ ^[Yy]$ ]] && shutdown now';
 
 alias ip='ip -color';
