@@ -7,24 +7,24 @@ case $- in
 esac
 #Importamos todos los sub archivos
 #Aliases utiles
-if [ -f ~/.config/bashrc/alias ];
+if [ -f ~/.config/bash/alias ];
 then
-    . ~/.config/bashrc/alias
+    . ~/.config/bash/alias
 fi
 #Prompt para que la terminal se vea bien y sea extra util
-if [ -f ~/.config/bashrc/promts ];
+if [ -f ~/.config/bash/promts ];
 then
-    . ~/.config/bashrc/promts
+    . ~/.config/bash/promts
 fi
 #Exportar variables necesarias
-if [ -f ~/.config/bashrc/exports ];
+if [ -f ~/.config/bash/exports ];
 then
-    . ~/.config/bashrc/exports
+    . ~/.config/bash/exports
 fi
 #Funciones utiles (parecido a los alias)
-if [ -f ~/.config/bashrc/functions ];
+if [ -f ~/.config/bash/functions ];
 then
-    . ~/.config/bashrc/functions
+    . ~/.config/bash/functions
 fi
 
 

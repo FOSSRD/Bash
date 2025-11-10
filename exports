@@ -9,8 +9,9 @@ export GEM_HOME="$XDG_DATA_HOME"/gem;
 export GEM_SPEC_CACHE="$XDG_CACHE_HOME"/gem;
 export KDEHOME="$XDG_CONFIG_HOME"/kde;
 export MPLAYER_HOME="$XDG_CONFIG_HOME"/mplayer;
+
 #colorman
-if $_isxrunning; then
+if [ -n "$DISPLAY" ]; then
   export PAGER=less
   export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
   export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold

@@ -1,33 +1,48 @@
-## Bash
+# Bash Config
 
-**Bash** es un intérprete de comandos y un lenguaje de programación de shell utilizado en sistemas Unix y Linux. Proporciona una interfaz de línea de comandos que permite a los usuarios interactuar con el sistema operativo, ejecutar comandos, automatizar tareas y escribir scripts para realizar diversas acciones en un entorno de línea de comandos. El nombre "Bash" es una abreviatura de "Bourne-Again Shell," haciendo referencia a su relación con el shell Bourne original desarrollado por Stephen Bourne. Bash es uno de los shells más populares y ampliamente utilizados en sistemas Unix y Linux.
+This is a collection of bash configuration scripts that aim to provide a more powerful and user-friendly shell experience. It includes a set of aliases, functions, and a custom prompt that will make your time in the terminal more productive and enjoyable.
 
-## .bashrc
+## Features
 
-El archivo `.bashrc` es un archivo de configuración utilizado en sistemas Unix y Linux para personalizar el comportamiento del shell Bash. Puede incluir diversas configuraciones y definiciones de alias para hacer que tu experiencia en la línea de comandos sea más eficiente y personalizada.
+- **Custom Prompt:** A clean and informative prompt that displays the exit status of the last command, your username, hostname, and the current working directory. It also includes a random emoji for a bit of fun.
+- **Aliases:** A collection of useful aliases for common commands, such as `ll` for `ls -alF` and `byebye` for a safer `shutdown now`.
+- **Functions:** A set of powerful functions that extend the functionality of your shell, including:
+    - `extract`: Extracts any type of compressed file.
+    - `mdpdf`: Converts a markdown file to a PDF presentation using pandoc.
+    - `metadata`: Displays all metadata for a file.
+    - `edit`: Opens a file for editing using a fuzzy finder.
+    - `remindme`: Sets a reminder that will notify you after a specified time.
+- **History Management:** The history is configured to ignore duplicate commands and commands that start with a space. It also saves a large number of commands to the history file.
+- **XDG Base Directory Support:** The configuration follows the XDG Base Directory Specification to keep your home directory clean.
 
-### Requisitos para esta configuración:
+## Prerequisites
 
-- **FZF**: *FZF* (Fuzzy Finder) es una herramienta de línea de comandos que permite buscar y seleccionar archivos o elementos de una lista de manera rápida y sencilla mediante una coincidencia difusa. Puedes configurar FZF en tu `.bashrc` para que forme parte de tu flujo de trabajo.
+- **fzf:** A command-line fuzzy finder.
+- **bash-completion:** Programmable completion for bash.
+- **notify-send:** A program to send desktop notifications.
+- **pandoc:** A universal document converter.
+- **exiftool:** A platform-independent Perl library plus a command-line application for reading, writing and editing meta information in a wide variety of files.
 
-- **Bash Completion**: El soporte de autocompletado en Bash es una característica útil que te permite presionar la tecla Tab para autocompletar comandos, nombres de archivos y más. Asegúrate de que esta característica esté habilitada y configurada en tu `.bashrc` para mejorar tu eficiencia en la línea de comandos.
+## Installation
 
-- **Notify-send**: `notify-send` es una utilidad en sistemas Linux que te permite enviar notificaciones al sistema de notificación, como la bandeja de sistema en entornos de escritorio como GNOME o KDE. Puedes utilizarlo para mostrar notificaciones personalizadas en respuesta a eventos específicos o comandos.
+1.  Clone this repository:
+    ```bash
+    git clone https://github.com/your-username/your-repo.git
+    ```
+2.  Run the installation script:
+    ```bash
+    cd your-repo
+    sudo ./bashrc.sh
+    ```
+3.  Restart your shell or source the new `.bashrc` file:
+    ```bash
+    source ~/.bashrc
+    ```
 
-- **Pandoc**: *Pandoc* es una herramienta de conversión de documentos que te permite convertir entre diferentes formatos de archivo, como Markdown, HTML, PDF, DOCX y muchos más. Puedes usarlo en scripts o comandos dentro de tu `.bashrc` para automatizar tareas de conversión de documentos.
+## Contributing
 
-Para configurar estas herramientas en tu archivo `.bashrc`, puedes agregar las variables de entorno necesarias, definir alias para comandos comunes y ajustar las configuraciones según tus necesidades específicas. Asegúrate de consultar la documentación de cada herramienta para obtener información detallada sobre cómo integrarlas en tu entorno de Bash.
+Contributions are welcome! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request.
 
-Dentro del archivo `.bashrc`, encontrarás algunas de estas configuraciones que puedes revisar al abrir el archivo.
+## License
 
-### Instalación
-
-1. Copia el archivo `.bashrc` a la carpeta "/home/tu-usuario" donde "tu-usuario" debe reemplazarse por el nombre de usuario que hayas creado.
-2. Crea una carpeta llamada "bashrc" en la carpeta "/home/tu-usuario/.config".
-3. Copia los archivos "alias," "export," "function," y "prompts" en la carpeta "bashrc."
-
-### Este archivo de configuracion trae algunas configuraciones de Bash, puedes leer los comentarios del archivo de configuración los cuales están en español para mejor entendimiento.
-
-#### Nota: Si quieres proponer algun cambio para el archivo no dudes en hacer un pull request ;)
-
-### Somos FOSS-RD, una comunidad de Profesionales del área de Tecnología de República Dominicana.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
